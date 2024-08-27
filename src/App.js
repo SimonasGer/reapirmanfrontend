@@ -8,6 +8,7 @@ import {
 import Register from "./components/Register";
 import Login from "./components/Login";
 import HomePage from "./components/HomePage";
+import AddRepairMan from "./components/AddRepairMan";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -42,6 +43,16 @@ function App() {
           <Route
             path="/login"
             element={<Login onLogin={() => setIsAuthenticated(true)} />}
+          />
+          <Route
+            path="/addrepairman"
+            element={
+              isAuthenticated ? (
+                <AddRepairMan />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
           />
         </Routes>
       </div>
