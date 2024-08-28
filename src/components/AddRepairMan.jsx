@@ -4,11 +4,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const AddRepairMan = () => {
   const [repairMan, setRepairMan] = useState({
-    firstName: '',
-    lastName: '',
-    specialization: '',
-    image: '',
-    serviceName: '',
+    fname: '',
+    lname: '',
+    spec: '',
+    picture: '',
+    shop: '',
     city: ''
   });
 
@@ -28,13 +28,13 @@ const AddRepairMan = () => {
       if (!token) {
         throw new Error("User not authenticated");
       }
-      const response = await axios.post("http://localhost:8080/repairmen", repairMan, {
+      const response = await axios.post("http://localhost:8080/repairman", repairMan, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
       console.log('Repairman added:', response.data);
-      setRepairMan({ firstName: '', lastName: '', specialization: '', image: '', serviceName: '', city: '' });
+      setRepairMan({ fname: '', fname: '', spec: '', picture: '', shop: '', city: '' });
     } catch (error) {
       console.error(error);
       setError(error.response ? error.response.data.message : "Error adding repairman");
@@ -54,8 +54,8 @@ const AddRepairMan = () => {
                 className="form-control"
                 id="formFirstName"
                 placeholder="Enter first name"
-                name="firstName"
-                value={repairMan.firstName}
+                name="fname"
+                value={repairMan.fname}
                 onChange={handleChange}
               />
             </div>
@@ -67,8 +67,8 @@ const AddRepairMan = () => {
                 className="form-control"
                 id="formLastName"
                 placeholder="Enter last name"
-                name="lastName"
-                value={repairMan.lastName}
+                name="lname"
+                value={repairMan.lname}
                 onChange={handleChange}
               />
             </div>
@@ -80,8 +80,8 @@ const AddRepairMan = () => {
                 className="form-control"
                 id="formSpecialization"
                 placeholder="Enter specialization"
-                name="specialization"
-                value={repairMan.specialization}
+                name="spec"
+                value={repairMan.spec}
                 onChange={handleChange}
               />
             </div>
@@ -93,8 +93,8 @@ const AddRepairMan = () => {
                 className="form-control"
                 id="formServiceName"
                 placeholder="Enter service name"
-                name="serviceName"
-                value={repairMan.serviceName}
+                name="shop"
+                value={repairMan.shop}
                 onChange={handleChange}
               />
             </div>
@@ -119,8 +119,8 @@ const AddRepairMan = () => {
                 className="form-control"
                 id="formImage"
                 placeholder="Enter image URL"
-                name="image"
-                value={repairMan.image}
+                name="picture"
+                value={repairMan.picture}
                 onChange={handleChange}
               />
             </div>

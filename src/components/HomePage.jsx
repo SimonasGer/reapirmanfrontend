@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import AddRepairMan from "./AddRepairMan";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ const HomePage = () => {
             </button>
           </div>
         </div>
+        <AddRepairMan/>
       </div>
     </>
   );
