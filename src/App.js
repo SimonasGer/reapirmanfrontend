@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import Register from "./components/Register";
 import Login from "./components/Login";
-import HomePage from "./components/HomePage";
+import MainPage from "./components/MainPage";
 import AddRepairMan from "./components/AddRepairMan";
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
             path="/"
             element={
               isAuthenticated ? (
-                <HomePage onLogout={handleLogout} />
+                <MainPage onLogout={handleLogout} />
               ) : (
                 <Navigate to="/login" />
               )
@@ -47,11 +47,7 @@ function App() {
           <Route
             path="/addrepairman"
             element={
-              isAuthenticated ? (
-                <AddRepairMan />
-              ) : (
-                <Navigate to="/login" />
-              )
+              isAuthenticated ? <AddRepairMan /> : <Navigate to="/login" />
             }
           />
         </Routes>
