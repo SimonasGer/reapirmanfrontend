@@ -32,7 +32,7 @@ const MainPage = ({ onLogout }) => {
 
   const handleLike = (id) => {
     axios
-      .post(`https://repairmanbackend.vercel.app//repairman/${id}`, {likes: userId}, {
+      .post(`https://www.repairmanbackend.vercel.app/repairman/${id}`, {likes: userId}, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`
         }
