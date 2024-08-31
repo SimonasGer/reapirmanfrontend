@@ -1,6 +1,9 @@
 Serviso meistrai
 
 https://reapirmanfrontend.vercel.app/login cia galima isbandyti programa
+Administratorius
+email: admin@mail.com
+password: admin123
 
 Funkcijos:
 
