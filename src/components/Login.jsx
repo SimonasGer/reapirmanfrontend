@@ -11,7 +11,7 @@ const Login = ({ onLogin }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("https://www.repairmanbackend.vercel.app/users/login", {
+      const response = await axios.post("https://reapirmanfrontend.vercel.app/users/login", {
         email,
         password,
       });

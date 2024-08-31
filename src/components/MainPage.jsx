@@ -13,7 +13,7 @@ const MainPage = ({ onLogout }) => {
   useEffect(() => {
     // Fetch repairmen ads from the backend
     axios
-      .get("https://repairmanbackend.vercel.app//repairman", {
+      .get("https://reapirmanfrontend.vercel.app/repairman", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`
         }
@@ -32,7 +32,7 @@ const MainPage = ({ onLogout }) => {
 
   const handleLike = (id) => {
     axios
-      .post(`https://www.repairmanbackend.vercel.app/repairman/${id}`, {likes: userId}, {
+      .post(`https://reapirmanfrontend.vercel.app/repairman/${id}`, {likes: userId}, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`
         }
