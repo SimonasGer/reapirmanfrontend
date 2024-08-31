@@ -20,7 +20,7 @@ const Register = () => {
 
     try {
       const response = await axios.post(
-        "https://reapirmanfrontend.vercel.app/users/register",
+        "https://repairmanbackend.vercel.app/users/register",
         {
           username,
           email,
