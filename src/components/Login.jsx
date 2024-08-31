@@ -11,7 +11,7 @@ const Login = ({ onLogin }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8080/users/login", {
+      const response = await axios.post("repairmanbackend.vercel.app/users/login", {
         email,
         password,
       });
@@ -21,7 +21,6 @@ const Login = ({ onLogin }) => {
         setMessage("Login successful!");
         localStorage.setItem("username", response.data.data.username);
         localStorage.setItem("role", response.data.data.role);
-        onLogin();
         navigate("/");
       } else {
         setMessage("Login failed. No token received.");
@@ -33,8 +32,6 @@ const Login = ({ onLogin }) => {
         error.response.data.message
       ) {
         setMessage(error.response.data.message);
-      } else {
-        setMessage("An error occurred. Please try again.");
       }
     }
   };

@@ -9,20 +9,16 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import MainPage from "./components/MainPage";
 import AddRepairMan from "./components/AddRepairMan";
+import HomePage from "./components/HomePage";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (token) {
-      setIsAuthenticated(true);
-    }
   }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    setIsAuthenticated(false);
   };
 
   return (
@@ -30,26 +26,17 @@ function App() {
       <div>
         <Routes>
           <Route
-            path="/"
-            element={
-              isAuthenticated ? (
-                <MainPage onLogout={handleLogout} />
-              ) : (
-                <Navigate to="/login" />
-              )
-            }
-          />
-          <Route path="/register" element={<Register />} />
+            path="/addrepairman"
+            element={<HomePage/>}/>
+          <Route 
+            path="/register" 
+            element={<Register />} />
           <Route
             path="/login"
-            element={<Login onLogin={() => setIsAuthenticated(true)} />}
-          />
-          <Route
-            path="/addrepairman"
-            element={
-              isAuthenticated ? <AddRepairMan /> : <Navigate to="/login" />
-            }
-          />
+            element={<Login/>}/>
+            <Route
+            path="/"
+            element={<MainPage/>}/>
         </Routes>
       </div>
     </Router>

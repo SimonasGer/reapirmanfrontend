@@ -1,12 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const Header = ({ pageTitle, onLogout }) => {
-  const userName = localStorage.getItem("userName"); // Assuming userName is stored in localStorage
+const Header = ({pageTitle}) => {
+  const userName = localStorage.getItem("username"); // Assuming userName is stored in localStorage
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    onLogout();
+    localStorage.removeItem("token")
+    localStorage.removeItem("role")
+    localStorage.removeItem("username")
     navigate("/login");
   };
 

@@ -28,7 +28,7 @@ const AddRepairMan = () => {
       if (!token) {
         throw new Error("User not authenticated");
       }
-      const response = await axios.post("http://localhost:8080/repairman", repairMan, {
+      const response = await axios.post("repairmanbackend.vercel.app/repairman", repairMan, {
         headers: {
           Authorization: `Bearer ${token}`
         }

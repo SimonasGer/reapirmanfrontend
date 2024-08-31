@@ -3,22 +3,43 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { jwtDecode } from "jwt-decode";
 
 const MainPage = ({ onLogout }) => {
+  const userId = jwtDecode(localStorage.getItem("token")).id;
   const [repairmen, setRepairmen] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     // Fetch repairmen ads from the backend
     axios
-      .get("http://localhost:8080/repairman")
-      .then((response) => setRepairmen(response.data))
+      .get("repairmanbackend.vercel.app/repairman", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+      })
+      .then((response) => setRepairmen(response.data.data.repairmen))
       .catch((error) => console.error("Error fetching repairmen:", error));
+
+      if(!localStorage.getItem("token")){
+        navigate("/login")
+      }
   }, []);
 
   const handleAddRepairman = () => {
     navigate("/addrepairman");
   };
+
+  const handleLike = (id) => {
+    axios
+      .post(`repairmanbackend.vercel.app/repairman/${id}`, {likes: userId}, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+      })
+      .catch((error) => console.error("Error fetching repairmen:", error));
+      console.log(repairmen)
+  }
 
   return (
     <div>
@@ -47,14 +68,17 @@ const MainPage = ({ onLogout }) => {
                   <p className="card-text">
                     <strong>City:</strong> {repairman.city}
                   </p>
+                  <button onClick={() => handleLike(repairman._id)} className={`h2`}>
+                  ♥ <span>{repairman.likes.length}</span>
+                  </button>
                 </div>
               </div>
             </div>
           ))}
         </div>
-        <button className="btn btn-primary mt-4" onClick={handleAddRepairman}>
+        {localStorage.getItem("role") == "admin" && <button className="btn btn-primary mt-4" onClick={handleAddRepairman}>
           Add Repairman
-        </button>
+        </button>}
       </div>
     </div>
   );

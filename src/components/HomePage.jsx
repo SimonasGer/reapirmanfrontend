@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import AddRepairMan from "./AddRepairMan";
-
+import { useEffect } from "react";
 const HomePage = () => {
   const navigate = useNavigate();
 
@@ -11,6 +11,13 @@ const HomePage = () => {
     localStorage.removeItem("role");
     navigate("/login");
   };
+
+  useEffect(() => {
+    if(!localStorage.getItem("token")){
+      navigate("/login")
+    }
+  }, [])
+
 
   return (
     <>
